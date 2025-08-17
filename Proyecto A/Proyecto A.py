@@ -1,4 +1,8 @@
 import random
+# from Funciones import ataque_nulo
+
+
+
 
 class Jugador:
 
@@ -16,13 +20,13 @@ class Jugador:
         crit = random.randint(0,10)
         if crit >= 7:
             objetivo.vida -= int(self.ataque*1.5)
-            return f"{self.nombre} ha atacado a {objetivo.nombre}!!, ha sido super efectivo, le realizó {self.ataque*1.5} de DMG"
+            return f"{self.nombre} ha atacado a {objetivo.nombre}!!, ha sido super efectivo, le realizó {int(self.ataque*1.5)} de DMG"
         elif crit < 7 and crit >= 3:
             objetivo.vida -= int(self.ataque)
-            return f"{self.nombre} ha atacado a {objetivo.nombre}!!, le ha hecho {self.ataque} de DMG"
+            return f"{self.nombre} ha atacado a {objetivo.nombre}!!, le ha hecho {int(self.ataque)} de DMG"
         elif crit <3 and crit >= 1:
             objetivo.vida -= int(self.ataque*0.2)
-            return f"{self.nombre} ha atacado a {objetivo.nombre}!!, apenas le ha hecho daño, le realizó {self.ataque*0.2} de DMG"
+            return f"{self.nombre} ha atacado a {objetivo.nombre}!!, apenas le ha hecho daño, le realizó {int(self.ataque*0.2)} de DMG"
         else:
             return f"{self.nombre} ha atacado a {objetivo.nombre}!!, {objetivo.nombre} ha esquivado el ataque"
 
@@ -32,10 +36,6 @@ class Jugador:
             self.vida += objetivo.ataque
             objetivo.vida -= self.ataque*1.5
             return f"{self.nombre} ha contrarrestado el ataque de {objetivo.nombre}!!, le realiza {self.ataque*1.5} de DMG aumentado"
-
-
-
-J1 = Jugador("Arthur Morgan", "2500", "120", "80")
 
 class NPC:
 
@@ -72,7 +72,20 @@ Enemigo = NPC("Saibaiman", "1000", "20", "12")
 
 print("Bienvenido al entorno de pruebas, se te asignará un personaje para jugar combates uno a uno vs la computadora.")
 nombre_jugador = input("Ingrese su nombre: ")
-print(f"Jugador {nombre_jugador}, se le ha asignado el personaje {J1.nombre} para su enfrentamiento. Su enemigo es {Enemigo.nombre}")
-print(f"Este combate se relizará por turnos, las stats de ambos lados son las siguientes: \n{J1}\n\n{Enemigo}")
+stats_J1 = input("Ingrese las stats del personaje en el formato nombre,vida,armadura,ataque. Ten en consideración que si las stats son exageradas, se le aplicaran debuffos\n")
 
-print(J1.atacar(Enemigo))
+stats_J1 = stats_J1.split(",")
+
+J1 = Jugador(stats_J1)
+print(J1)
+
+
+# print(f"Jugador {nombre_jugador}, se le ha asignado el personaje {J1.nombre} para su enfrentamiento. Su enemigo es {Enemigo.nombre}")
+# print(f"Este combate se relizará por turnos, las stats de ambos lados son las siguientes: \n{J1}\n\n{Enemigo}")
+# print(f"Cada jugador tendrá un turno para atacar, esquivar, bloquear.\n\nAdicionalmente, existe una probabilidad de parry (el cual aplica el mismo multiplicador que un ataque \"efectivo\")")
+# cont_turnos = 0
+
+# while True:
+    
+
+# print(J1.atacar(Enemigo))
