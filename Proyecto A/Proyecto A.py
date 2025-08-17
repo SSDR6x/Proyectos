@@ -69,14 +69,23 @@ Enemigo = NPC("Saibaiman", "1000", "20", "12")
 
 # print(f"{J1}\n\n{Enemigo} ")
 # print(J1.atacar(Enemigo))
-
+stats_J1 = str()
 print("Bienvenido al entorno de pruebas, se te asignará un personaje para jugar combates uno a uno vs la computadora.")
 nombre_jugador = input("Ingrese su nombre: ")
-stats_J1 = input("Ingrese las stats del personaje en el formato nombre,vida,armadura,ataque. Ten en consideración que si las stats son exageradas, se le aplicaran debuffos\n")
 
-stats_J1 = stats_J1.split(",")
+if len(nombre_jugador) == 0:
+    while len(nombre_jugador) == 0:
+        nombre_jugador = input("El nombre debe contener al menos 1 caracter. Ingrese un nombre valido: ")
 
-J1 = Jugador(stats_J1)
+else:
+    stats_J1 = input("Ingrese las stats del personaje en el formato nombre,vida,armadura,ataque. Ten en consideración que si las stats son exageradas, se le aplicaran debuffos\n")
+    
+    while "," not in stats_J1:
+        stats_J1 = input("Formato de ingreso incorrecto, por favor siga el formato recomendado; stat_1,stat_2,stat_n...")
+
+    stats_J1 = stats_J1.split(",")
+
+J1 = Jugador(*stats_J1)
 print(J1)
 
 
