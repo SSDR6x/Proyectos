@@ -89,9 +89,9 @@ J1 = Jugador(*stats_J1)
 print(J1)
 
 
-# print(f"Jugador {nombre_jugador}, se le ha asignado el personaje {J1.nombre} para su enfrentamiento. Su enemigo es {Enemigo.nombre}")
-# print(f"Este combate se relizará por turnos, las stats de ambos lados son las siguientes: \n{J1}\n\n{Enemigo}")
-# print(f"Cada jugador tendrá un turno para atacar, esquivar, bloquear.\n\nAdicionalmente, existe una probabilidad de parry (el cual aplica el mismo multiplicador que un ataque \"efectivo\")")
+print(f"Jugador {nombre_jugador}, ha creado al personaje {J1.nombre} para su enfrentamiento. Su enemigo 1er enemigo es {Enemigo.nombre}\n")
+print(f"Este combate se relizará por turnos, las stats de ambos lados son las siguientes: \n{J1}\n\n{Enemigo}")
+print(f"Cada jugador tendrá un turno para atacar, esquivar, bloquear.\n\nAdicionalmente, existe una probabilidad de parry (el cual aplica el mismo multiplicador que un ataque \"efectivo\")")
 # cont_turnos = 0
 
 # while True:
