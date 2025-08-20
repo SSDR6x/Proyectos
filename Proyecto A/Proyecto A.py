@@ -21,10 +21,10 @@ class Jugador:
         if crit >= 7:
             objetivo.vida -= int(self.ataque*1.5)
             return f"{self.nombre} ha atacado a {objetivo.nombre}!!, ha sido super efectivo, le realizó {int(self.ataque*1.5)} d e DMG"
-        elif crit < 7 and crit >= 3:
+        elif crit >= 3:
             objetivo.vida -= int(self.ataque)
             return f"{self.nombre} ha atacado a {objetivo.nombre}!!, le ha hecho {int(self.ataque)} de DMG"
-        elif crit <3 and crit >= 1:
+        elif crit >= 1:
             objetivo.vida -= int(self.ataque*0.2)
             return f"{self.nombre} ha atacado a {objetivo.nombre}!!, apenas le ha hecho daño, le realizó {int(self.ataque*0.2)} de DMG"
         else:
@@ -118,11 +118,21 @@ while J1.vida > 0 and Enemigo.vida > 0:
                     break
                 else: 
                     continue
-        
+    
         if attr not in ("atacar","defender"):
             print("Has acabado tus intentos disponibles, se continuará al siguiente turno.")
+
         else:
             print(accion(Enemigo))
+    else:
+        accion_npc = random.randint(0,1)
+        if  accion_npc == 1:
+            attr = "atacar"
+            accion = getattr(Enemigo, attr)
+            print(accion(J1))
+        else:
+            attr = "defenderse"
+            accion = getattr(Enemigo, attr)
 
 
 
