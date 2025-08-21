@@ -1,4 +1,13 @@
 import random
+NPCs = open("NPC's.txt",'r')
+NPCs_no_formateados = str(NPCs.readlines())
+NPCs.close()
+NPCs_no_formateados = NPCs_no_formateados.strip("[]").strip().strip("'").split(";")
+NPCs_formateados = []
+
+for i in range(len(NPCs_no_formateados)):
+    NPCs_no_formateados[i] = NPCs_no_formateados[i].split(",")
+    NPCs_formateados.append(NPCs_no_formateados[i])
 # from Funciones import ataque_nulo
 
 cont_turnos = 0
@@ -39,11 +48,12 @@ class Jugador:
 
 class NPC:
 
-    def __init__(self, nombre, vida, armadura, ataque):
+    def __init__(self, nombre, vida, armadura, ataque,nivel):
         self.nombre = nombre
         self.vida = int(vida)
         self.armadura = int(armadura)
         self.ataque = int(ataque)
+        self.nivel = int(nivel)
 
     def __str__(self):
         return f"NPC stats:\n_________\nHP: {self.vida}\nARMOR: {self.armadura}\nATK: {self.ataque}"
@@ -66,43 +76,42 @@ class NPC:
         
         prob_defensa = random.randint(0,1)
         if prob_defensa == 1: #Como hago q funcione
+            # self.vida += jugador.atacar #No se puede llamar directo al metodo, alguna forma de indexar el daño especifico que hace J1 para nulificarlo
             print(f"{self.nombre} se ha defendido exitosamente, el ataque es ineficaz.\nHaces 0 de DMG")
         else:
             print(f"{self.nombre} ha tratado de defenderse\n...Pero ha fallado, infringes {jugador.ataque} de DMG")
             
                 
 
-Enemigo = NPC("Saibaiman", "1000", "20", "12")
+Enemigo = NPC(*NPCs_formateados[0])
 
 stats_J1 = str()
 print("Bienvenido al entorno de pruebas, se te asignará un personaje para jugar combates uno a uno vs la computadora.")
 nombre_jugador = input("Ingrese su nombre: ")
 
-if len(nombre_jugador) == 0:
-    while len(nombre_jugador) == 0:
-        nombre_jugador = input("El nombre debe contener al menos 1 caracter. Ingrese un nombre valido: ")
+while len(nombre_jugador) == 0:
+    nombre_jugador = input("El nombre debe contener al menos 1 caracter. Ingrese un nombre valido: ")
 
-else:
-    stats_J1 = input("Ingrese las stats del personaje en el formato nombre,vida,armadura,ataque. Ten en consideración que si las stats son exageradas, se le aplicaran debuffos\n")
+stats_J1 = input("Ingrese las stats del personaje en el formato nombre,vida,armadura,ataque. Ten en consideración que si las stats son exageradas, se le aplicaran debuffos\n")
     
-    while "," not in stats_J1:
-        stats_J1 = input("Formato de ingreso incorrecto, por favor siga el formato recomendado; stat_1,stat_2,stat_n...\n")
+while "," not in stats_J1:
+    stats_J1 = input("Formato de ingreso incorrecto, por favor siga el formato recomendado; stat_1,stat_2,stat_n...\n")
 
-    stats_J1 = stats_J1.split(",")
+stats_J1 = stats_J1.split(",")
 
 J1 = Jugador(*stats_J1)
 print(J1)
 
 
-print(f"Jugador {nombre_jugador} ha creado al personaje {J1.nombre} para su enfrentamiento. Su enemigo 1er enemigo es {Enemigo.nombre}.\n")
+print(f"Jugador {nombre_jugador} ha creado al personaje {J1.nombre} para su enfrentamiento. Su 1er enemigo es {Enemigo.nombre}.\n")
 print(f"Este combate se relizará por turnos, las stats de ambos lados son las siguientes: \n{J1}\n\n{Enemigo}\n")
 print(f"Cada jugador tendrá un turno para atacar, esquivar, bloquear.\nAdicionalmente, existe una probabilidad de parry (el cual aplica el mismo multiplicador que un ataque \"efectivo\")")
 
-
-
 print("El combate da inicio.")    
 
-while J1.vida > 0 and Enemigo.vida > 0:
+cont_enemigos = 0
+#Combate
+while True:
     print(f"Turno/Ronda {cont_turnos}\nHP {J1.nombre}: {J1.vida} | HP {Enemigo.nombre}: {Enemigo.vida}")
 
     
@@ -112,9 +121,9 @@ while J1.vida > 0 and Enemigo.vida > 0:
 
         if attr not in ("atacar","defender"):
             for i in range(0,3):
-                attr = input(f"acción invalida/incorrecta - intentos restantes: {3-(i+1)}, prueba de nuevo:\n")
+                attr = input(f"acción invalida/incorrecta - intentos restantes: {4-(i+1)}, prueba de nuevo:\n")
                 if attr in ("atacar","defender"):
-                    accion = getattr(J1, attr, None)
+                    accion = getattr(J1, attr)
                     break
                 else: 
                     continue
@@ -124,6 +133,7 @@ while J1.vida > 0 and Enemigo.vida > 0:
 
         else:
             print(accion(Enemigo))
+    #Accion NPC
     else:
         accion_npc = random.randint(0,1)
         if  accion_npc == 1:
@@ -133,10 +143,28 @@ while J1.vida > 0 and Enemigo.vida > 0:
         else:
             attr = "defenderse"
             accion = getattr(Enemigo, attr)
+            print(accion(J1))
+
+    if J1.vida <= 0:
+        break
+    elif Enemigo.vida <= 0:
+        if cont_enemigos == 6:
+            break
+        cont_enemigos += 1
+        Enemigo = NPC(*NPCs_formateados[cont_enemigos])
+
+        
+    cont_turnos += 1
+
+
+if J1.vida <= 0:
+    print(f"Has perdido, tu personaje {J1.nombre} ha muerto.\n\nGAME OVER")
+
+else:
+    print(f"Felicidades {nombre_jugador}!! Has ganado contra todos los Enemigos dispuestos por este juego.\nGracias por probar el juego")
 
 
 
-    # else:
+input("Presiona cualquier tecla para salir...")
 
     
-    cont_turnos += 1
