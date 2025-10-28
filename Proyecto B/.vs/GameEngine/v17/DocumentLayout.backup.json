@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Draxl\\OneDrive\\Documentos\\Repositorios\\GameEngineTry0\\GameEngine\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CF8E7C54-4F76-4DFF-AB86-7F14F6AC4E56}|GameEngine.vcxproj|C:\\Users\\Draxl\\OneDrive\\Documentos\\Repositorios\\GameEngineTry0\\GameEngine\\GameEngine.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CF8E7C54-4F76-4DFF-AB86-7F14F6AC4E56}|GameEngine.vcxproj|solutionrelative:GameEngine.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GameEngine.cpp",
+              "DocumentMoniker": "C:\\Users\\Draxl\\OneDrive\\Documentos\\Repositorios\\GameEngineTry0\\GameEngine\\GameEngine.cpp",
+              "RelativeDocumentMoniker": "GameEngine.cpp",
+              "ToolTip": "C:\\Users\\Draxl\\OneDrive\\Documentos\\Repositorios\\GameEngineTry0\\GameEngine\\GameEngine.cpp",
+              "RelativeToolTip": "GameEngine.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-10-28T00:48:38.684Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
