@@ -1,0 +1,6 @@
+Jugador {nombre_jugador} ha creado al personaje {J1.nombre} para su enfrentamiento. Su 1er enemigo es {Enemigo.nombre}.\n|mainframe|1|1|None;
+Este combate se relizará por turnos, las stats de ambos lados son las siguientes: \n{J1}\n\n{Enemigo}\n|mainframe|1|2|None;
+Cada jugador tendrá un turno para atacar, esquivar, bloquear.\nAdicionalmente, existe una probabilidad de parry (el cual aplica el mismo multiplicador que un ataque \"efectivo\")|mainframe|1|3|None
+
+
+

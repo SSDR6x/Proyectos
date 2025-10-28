@@ -1,0 +1,1 @@
+Saibaiman,1000,100,12,1,J1;Nappa,1600,300,20,2,J1;Vegeta,2400,230,50,3,J1;Capitan Ginyu,4000,400,70,4,J1;Freezer (1era forma),6000,900,150,5,J1;Freezer (forma final),10000,2000,400,6,J1;Freezer (forma final 100%),15000,5000,900,7,J1
