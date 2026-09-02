@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/ssdr6x/Documents/Workspace/Proyecto C/build",
+  "command": "/usr/bin/g++   -g -std=gnu++17 -o CMakeFiles/badplat.dir/main.cpp.o -c \"/home/ssdr6x/Documents/Workspace/Proyecto C/main.cpp\"",
+  "file": "/home/ssdr6x/Documents/Workspace/Proyecto C/main.cpp",
+  "output": "CMakeFiles/badplat.dir/main.cpp.o"
+}
+]
