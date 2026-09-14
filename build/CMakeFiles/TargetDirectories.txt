@@ -1,0 +1,3 @@
+/home/ssdr6x/Documents/Workspace/Proyectos/build/CMakeFiles/badplat.dir
+/home/ssdr6x/Documents/Workspace/Proyectos/build/CMakeFiles/edit_cache.dir
+/home/ssdr6x/Documents/Workspace/Proyectos/build/CMakeFiles/rebuild_cache.dir

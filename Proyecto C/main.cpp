@@ -1,8 +1,8 @@
 #include <iostream>
 #include <raylib.h>
-#include <vector>
 #include <math.h>
 #include <rlgl.h>
+#include <vector>
 #include <thread>
 
 class Personaje{
@@ -11,9 +11,6 @@ class Personaje{
     std::string nombre;
     Texture2D HeroTexture = LoadTexture("Resources/Textures/BSquare.png");
     
-    void Saludar(){
-        std::cout << "Soy " << nombre;
-    }
     void moverPersonaje(char direccion){
         switch (direccion){
             case 'w':
@@ -30,6 +27,9 @@ class Personaje{
             break;
         }
     }
+    void detectarColision(std::vector<int> mallaColisionEnemigo){
+    
+    }
     void dibujarPersonaje(){
         DrawTexture(HeroTexture, posX, posY, WHITE);
     }
@@ -37,12 +37,20 @@ class Personaje{
         int id;
         int posX = 320;
         int posY = 240;
+        int filas = 40;
+        int columnas = 40;
+        int valorInicial = 0;
+        std::vector<std::vector<int>>mallaColision(filas, std::vector<int>(columnas, valorInicial));
 };
 
 class Enemigo{
+    public: 
+        std::string nombre;
+
     private:
         int posX;
         int posY;
+        int HP;
 
 };
 int main(){
