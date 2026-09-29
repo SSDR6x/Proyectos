@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/ssdr6x/Documents/Workspace/Proyecto C/main.cpp" "CMakeFiles/badplat.dir/main.cpp.o" "gcc" "CMakeFiles/badplat.dir/main.cpp.o.d"
+  "/home/ssdr6x/Documents/Workspace/Proyectos/Proyecto C/main.cpp" "CMakeFiles/badplat.dir/main.cpp.o" "gcc" "CMakeFiles/badplat.dir/main.cpp.o.d"
   "" "badplat" "gcc" "CMakeFiles/badplat.dir/link.d"
   )
 

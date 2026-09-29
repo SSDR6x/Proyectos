@@ -27,43 +27,49 @@ class Personaje{
             break;
         }
     }
-    void detectarColision(std::vector<int> mallaColisionEnemigo){
-    
-    }
+//    void detectarColision(std::vector<int> mallaColisionEnemigo){
+//    }
     void dibujarPersonaje(){
         DrawTexture(HeroTexture, posX, posY, WHITE);
     }
     private:
-        int id;
-        int posX = 320;
-        int posY = 240;
-        int filas = 40;
-        int columnas = 40;
-        int valorInicial = 0;
-        std::vector<std::vector<int>>mallaColision(filas, std::vector<int>(columnas, valorInicial));
+    int id;
+    int posX = 320;
+    int posY = 240;
+    int filas = 40;
+    int columnas = 40;
+    int valorInicial = 0;
+//    std::vector<std::vector<int>>mallaColision(filas, std::vector<int>(columnas, valorInicial));
 };
 
 class Enemigo{
     public: 
-        std::string nombre;
+    std::string nombre;
+    
+    Texture2D EnemyTexture = LoadTexture("Resources/Texures/RSquare.png");
 
+    void dibujarEnemigo(){
+        DrawTexture(EnemyTexture, posX, posY, WHITE);
+    };
+        
     private:
-        int posX;
-        int posY;
-        int HP;
-
+        int posX = GetRandomValue(20, 620);
+        int posY = GetRandomValue(20, 460);
+        int HP = 100;
 };
+
 int main(){
     Color backgroundColor = {255, 255, 255, 255};
     InitWindow(640, 480,  "Try");
     SetTargetFPS(60);
     Personaje Hero;
-        
+    Enemigo Boss;
     while (!WindowShouldClose()){
         BeginDrawing(); //call  para empezar a dibujar
         ClearBackground(backgroundColor);
         Hero.dibujarPersonaje();
-        
+        Boss.dibujarEnemigo();
+
         if (IsKeyDown(KEY_W)){
             Hero.moverPersonaje('w');
         }
