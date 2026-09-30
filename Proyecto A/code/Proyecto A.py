@@ -1,17 +1,17 @@
 import random
 # import pygame
-import tkinter as tk
-from tkinter import ttk
-from Funciones import label_format
-from Funciones import close_game
-
-# from pkg_resources import resource_stream, resource_exists
+import PyQt6
+from code.recursos.Funciones import label_format
+from code.recursos.Funciones import close_game
+import os
 
 #pygame para el build 2d
 
-
 #Apertura y formateo de documentos
-NPCs = open("NPCs.txt",'r')
+path_npcs_enemigos = os.path.join("NPCs.txt")
+
+with open(path, "r", encoding="utf-8") as enemigos:
+
 Texto_Inicial = open("Texto.txt", "r", encoding= "utf-8")
 NPCs_no_formateados = str(NPCs.readlines())
 Texto_no_formateado = str(Texto_Inicial.readlines())
@@ -77,6 +77,8 @@ ttk.Button(mainframe, text="Continuar Partida").grid(column=4, row=2)
 
 
 
+
+
 class Jugador:
 
     def __init__(self, nombre, vida, armadura, ataque):
@@ -87,30 +89,37 @@ class Jugador:
 
 
     def __str__(self):
-        return f"\nPlayer stats:\n_________\nNombre: {self.nombre}\nHP: {self.vida}\nARMOR: {self.armadura}\nATK: {self.ataque}"
+        return (f"\nPlayer stats:\n_________\nNombre: {self.nombre}\nHP: {self.vida}\n"
+                 "ARMOR: {self.armadura}\nATK: {self.ataque}")
     
 
-    def atacar(self, objetivo):
+    def atacar(self, objetivo) -> str:
         crit = random.randint(0,10)
         reduccion_de_DMG = objetivo.armadura
         if crit >= 7:
             objetivo.vida -= int(self.ataque*1.5) - int(reduccion_de_DMG*0.1)
-            return f"{self.nombre} ha atacado a {objetivo.nombre}!!, ha sido super efectivo, le realizó {int(self.ataque*1.5) - int(reduccion_de_DMG*0.1)} de DMG"
+            return (f"{self.nombre} ha atacado a {objetivo.nombre}!!, ha sido super efectivo, "
+                    "le realizó {int(self.ataque*1.5) - int(reduccion_de_DMG*0.1)} de DMG")
         elif crit >= 3:
-            objetivo.vida -= int(self.ataque) - int(reduccion_de_DMG*0.2)
-            return f"{self.nombre} ha atacado a {objetivo.nombre}!!, le ha hecho {int(self.ataque)- int(reduccion_de_DMG*0.2)} de DMG"
+            objetivo.vida -= int(self.ataque) - int(reduccion_de_DMG * 0.2)
+            return (f"{self.nombre} ha atacado a {objetivo.nombre}!!, "
+                    "le ha hecho {int(self.ataque)- int(reduccion_de_DMG*0.2)} de DMG")
+        
         elif crit >= 1:
             objetivo.vida -= int(self.ataque*0.2) - int(reduccion_de_DMG*0.4)
-            return f"{self.nombre} ha atacado a {objetivo.nombre}!!, apenas le ha hecho daño, le realizó {int(self.ataque*0.2) - int(reduccion_de_DMG*0.4)} de DMG"
+            return (f"{self.nombre} ha atacado a {objetivo.nombre}!!, apenas le ha hecho daño, "
+                     "le realizó {int(self.ataque*0.2) - int(reduccion_de_DMG*0.4)} de DMG")
         else:
-            return f"{self.nombre} ha atacado a {objetivo.nombre}!!, {objetivo.nombre} ha esquivado el ataque"
+            return (f"{self.nombre} ha atacado a {objetivo.nombre}!!, {objetivo.nombre}" 
+                     "ha esquivado el ataque")
 
     def parry(self, objetivo):
         prob_parry = random.randint(0,5)
         if prob_parry >= 4:
             self.vida += objetivo.ataque
             objetivo.vida -= self.ataque*1.5
-            return f"{self.nombre} ha contrarrestado el ataque de {objetivo.nombre}!!, le realiza {self.ataque*1.5} de DMG aumentado"
+            return (f"{self.nombre} ha contrarrestado el ataque de {objetivo.nombre}!!, "
+                    "le realiza {self.ataque*1.5} de DMG aumentado")
 
 stats_J1 = str()
 print("Bienvenido al entorno de pruebas, se te asignará un personaje para jugar combates uno a uno vs la computadora.")
